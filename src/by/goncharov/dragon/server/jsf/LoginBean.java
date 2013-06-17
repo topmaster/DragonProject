@@ -5,6 +5,8 @@ import javax.faces.bean.RequestScoped;
 
 import org.springframework.stereotype.Component;
 
+import by.goncharov.dragon.server.utils.NavigationConstants;
+
 /**
  * Description of LoginBean class
  *
@@ -36,5 +38,9 @@ public class LoginBean {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String login(){
+        return NavigationConstants.LOGIN_SUCCESS;
     }
 }

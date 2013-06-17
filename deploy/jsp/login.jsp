@@ -14,25 +14,22 @@
 <f:view>
     <head>
         <jsp:include page="tiles/commonHeader.jsp"/>
-        <title>Dragon Project</title>
+        <title>${msg.login_page_title}</title>
     </head>
     <body>
     <div id="page">
         <div class="header_login">
             <div class="logo"><a href="#"><img src="img/Dragon.png" alt="" title="" border="0"/></a></div>
-
         </div>
 
 
         <div class="login_form">
 
-            <h3><h:outputText value="Dragon Project"/></h3>
+            <h3><h:outputText value="#{msg.login_page_header}"/></h3>
 
-<%--
             <h:outputLink styleClass="forgot_pass" value="">
-                <h:outputText value="Forgot password"/>
+                <h:outputText value="#{msg.login_page_link_forgot_password}"/>
             </h:outputLink>
---%>
 
             <h:form>
                 <table border="0" cellpadding="5" cellspacing="0">
@@ -44,50 +41,56 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td>
+                        <td colspan="2">
                             <rich:message for="usnm" styleClass="error_main"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h:outputLabel value="Login:"/>
+                            <h:outputLabel value="#{msg.login_page_label_login}"/>
                         </td>
-                        <td>
+                        <td colspan="2">
                             <h:inputText id="usnm"
                                          styleClass="inputText inputBig"
                                          required="true"
-                                         requiredMessage="Enter login"
+                                         requiredMessage="#{msg.login_page_login_required}"
                                          value="#{loginBean.login}"/>
                         </td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td>
+                        <td colspan="2">
                             <rich:message for="psw" styleClass="error_main"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h:outputLabel value="Password:"/>
+                            <h:outputLabel value="#{msg.login_page_label_password}"/>
                         </td>
-                        <td>
+                        <td colspan="2">
                             <h:inputSecret id="psw"
                                            styleClass="inputText inputBig"
                                            required="true"
-                                           requiredMessage="Enter password"/>
+                                           requiredMessage="#{msg.login_page_password_required}"
+                                           value="#{loginBean.password}"/>
                         </td>
                     </tr>
-<%--                    <tr>
-                        <td></td>
-                        <td>
-                            <h:selectBooleanCheckbox title="Remember me" immediate="true"/>
-                            <h:outputLabel styleClass="rememberMe" value="Remember me"/>
-                        </td>
-                    </tr>--%>
                     <tr>
                         <td></td>
                         <td>
-                            <h:commandLink styleClass="button" value="Enter"/>
+                            <h:selectBooleanCheckbox immediate="true"/>
+                            <h:outputLabel styleClass="rememberMe" value="#{msg.login_page_label_check_box_remember_me}"/>
+                        </td>
+                        <td>
+                            <h:outputLink styleClass="registration" value="">
+                                <h:outputText value="#{msg.login_page_link_registration}"/>
+                            </h:outputLink>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2">
+                            <h:commandLink styleClass="button" value="#{msg.login_page_button_enter}" action="#{loginBean.login}"/>
                         </td>
                     </tr>
                 </table>

@@ -78,6 +78,40 @@ label {
     background-color: #2facff;
 }
 
+/*header styles*/
+.header {
+    width: 900px;
+    height: 100px;
+}
+
+.logo {
+    float: left;
+    padding: 35px 0 0 0;
+}
+
+.right_header {
+    width: 350px;
+    float: right;
+    text-align: right;
+    color: #FFFFFF;
+    padding: 40px 0 0 0;
+}
+
+.right_header a{
+margin:0 5px 0 5px;
+text-decoration:underline;
+color:#FFFFFF;
+}
+
+.right_header a.messages {
+    background: url(../img/comment.png) no-repeat right;
+    padding-right: 20px;
+}
+
+.right_header a.logout {
+    background: url(../img/user_logout.png) no-repeat right;
+    padding-right: 20px;
+}
 /*login page styles*/
 .header_login {
     width: 600px;
@@ -111,6 +145,15 @@ a.forgot_pass {
     padding: 0 0 0 18px;
     display: block;
     margin: 15px 20px 0 0;
+}
+
+a.registration {
+    color: #256c89;
+    text-decoration: none;
+    padding: 0 0 0 18px;
+    font-size: 12px;
+    font-weight: bold;
+    float: right;
 }
 
 .rememberMe {
