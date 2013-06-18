@@ -20,7 +20,7 @@ import javax.persistence.Table;
  * @created 23.05.13 12:47
  */
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User implements Serializable {
 
     public User() {
@@ -31,8 +31,8 @@ public class User implements Serializable {
     @GeneratedValue
     private int userId;
 
-    @Column(unique = true, name = "login")
-    private String login;
+    @Column(unique = true, name = "username")
+    private String username;
 
     @Column(name = "password")
     private String password;
@@ -61,12 +61,12 @@ public class User implements Serializable {
         this.userId = userId;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

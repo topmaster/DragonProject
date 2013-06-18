@@ -108,7 +108,7 @@ color:#FFFFFF;
     padding-right: 20px;
 }
 
-.right_header a.logout {
+.right_header .logout {
     background: url(../img/user_logout.png) no-repeat right;
     padding-right: 20px;
 }

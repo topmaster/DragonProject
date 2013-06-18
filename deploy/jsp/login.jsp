@@ -14,7 +14,7 @@
 <f:view>
     <head>
         <jsp:include page="tiles/commonHeader.jsp"/>
-        <title>${msg.login_page_title}</title>
+        <title>${msg.page_title}</title>
     </head>
     <body>
     <div id="page">
@@ -42,7 +42,7 @@
                     <tr>
                         <td></td>
                         <td colspan="2">
-                            <rich:message for="usnm" styleClass="error_main"/>
+                            <rich:message for="username" styleClass="error_main"/>
                         </td>
                     </tr>
                     <tr>
@@ -50,17 +50,17 @@
                             <h:outputLabel value="#{msg.login_page_label_login}"/>
                         </td>
                         <td colspan="2">
-                            <h:inputText id="usnm"
+                            <h:inputText id="username"
                                          styleClass="inputText inputBig"
                                          required="true"
                                          requiredMessage="#{msg.login_page_login_required}"
-                                         value="#{loginBean.login}"/>
+                                         value="#{loginBean.username}"/>
                         </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td colspan="2">
-                            <rich:message for="psw" styleClass="error_main"/>
+                            <rich:message for="password" styleClass="error_main"/>
                         </td>
                     </tr>
                     <tr>
@@ -68,7 +68,7 @@
                             <h:outputLabel value="#{msg.login_page_label_password}"/>
                         </td>
                         <td colspan="2">
-                            <h:inputSecret id="psw"
+                            <h:inputSecret id="password"
                                            styleClass="inputText inputBig"
                                            required="true"
                                            requiredMessage="#{msg.login_page_password_required}"
@@ -90,7 +90,7 @@
                     <tr>
                         <td></td>
                         <td colspan="2">
-                            <h:commandLink styleClass="button" value="#{msg.login_page_button_enter}" action="#{loginBean.login}"/>
+                            <h:commandLink id="doLogin" styleClass="button" type="submit" value="#{msg.login_page_button_enter}" action="#{loginBean.doLogin}"/>
                         </td>
                     </tr>
                 </table>

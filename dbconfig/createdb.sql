@@ -2,7 +2,7 @@ drop table if exists contact;
 drop table if exists aim;
 drop table if exists charges;
 drop table if exists goods_category;
-drop table if exists user;
+drop table if exists users;
 drop table if exists role;
 drop table if exists aim_category;
 
@@ -12,9 +12,9 @@ create table role (
     constraint pk_role primary key (role_id)
 );
 
-create table user (
+create table users (
     user_id int not null auto_increment,
-    login varchar (255) not null unique,
+    username varchar (255) not null unique,
     password varchar (255) not null,
     fk_role_id int not null,
     constraint pk_user primary key (user_id),
@@ -35,7 +35,7 @@ create table charges (
     fk_user_id int not null,
     constraint pk_charges primary key (charges_id),
     foreign key (fk_goods_category_id) references goods_category (goods_category_id),
-    foreign key (fk_user_id) references user (user_id)
+    foreign key (fk_user_id) references users (user_id)
 );
 
 create table contact (
@@ -49,7 +49,7 @@ create table contact (
     contact_type int not null,
     fk_user_id int not null,
     constraint pk_contact primary key (contact_id),
-    foreign key (fk_user_id) references user (user_id)
+    foreign key (fk_user_id) references users (user_id)
 );
 
 create table aim_category (
@@ -71,5 +71,8 @@ create table aim (
     fk_user_id int not null,
     constraint pk_aim primary key (aim_id),
     foreign key (fk_aim_category_id) references aim_category (aim_category_id),
-    foreign key (fk_user_id) references user (user_id)
+    foreign key (fk_user_id) references users (user_id)
 );
+
+INSERT INTO role(role_id, role_name) VALUES (1, 'ROLE_USER');
+INSERT INTO users(username, password, fk_role_id) VALUES ('foo', 'bar', 1);

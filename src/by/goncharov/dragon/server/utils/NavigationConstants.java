@@ -9,4 +9,5 @@ package by.goncharov.dragon.server.utils;
 public interface NavigationConstants {
 
     public static final String LOGIN_SUCCESS = "dashboard.faces";
+    public static final String LOGOUT_SUCCESS = "login.faces";
 }
