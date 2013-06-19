@@ -56,17 +56,17 @@ label {
     line-height: 38px;
     text-decoration: none;
     color: white;
-    /*Скругленные углы*/
+    /*rounded corners*/
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
-    /*Градиент*/
+    /*gradient*/
     background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
     background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
     background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
     background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
     background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
-    /*Переход*/
+    /*transition*/
     -webkit-transition: All 0.5s ease;
     -moz-transition: All 0.5s ease;
     -o-transition: All 0.5s ease;
@@ -125,11 +125,11 @@ color:#FFFFFF;
     margin: 20px 0 0 145px;
     float: left;
     padding: 0px 0 0 0px;
-    /*Скругленные углы*/
+    /*rounded corners*/
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
-    /*Градиент*/
+    /*gradient*/
     background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
     background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
     background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
@@ -160,4 +160,32 @@ a.registration {
     position: relative;
     float: none;
     bottom: 2px;
+}
+
+/*registration form*/
+.reg_form {
+    width: 600px;
+    height: auto;
+    background-color: white;
+    margin: 20px 0 0 145px;
+    float: left;
+    padding: 0px 0 0 0px;
+    /*rounded corners*/
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    /*gradient*/
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+}
+
+.requiredHead {
+    font-size: 11px;
+    font-weight: bold;
+    color: red;
+    float: right;
+    padding: 20px 15px 5px 0px;
 }

@@ -31,12 +31,12 @@
                 <h:outputText value="#{msg.login_page_link_forgot_password}"/>
             </h:outputLink>
 
-            <h:form>
+            <h:form id="loginForm">
                 <table border="0" cellpadding="5" cellspacing="0">
                     <tr style="height: 40px"></tr>
                     <tr>
                         <td colspan="2">
-                            <h:outputText styleClass="error_main" value=""/>
+                            <rich:message styleClass="error_main" for="doLogin"/>
                         </td>
                     </tr>
                     <tr>
@@ -82,7 +82,7 @@
                             <h:outputLabel styleClass="rememberMe" value="#{msg.login_page_label_check_box_remember_me}"/>
                         </td>
                         <td>
-                            <h:outputLink styleClass="registration" value="">
+                            <h:outputLink styleClass="registration" value="registration.faces">
                                 <h:outputText value="#{msg.login_page_link_registration}"/>
                             </h:outputLink>
                         </td>

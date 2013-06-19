@@ -8,16 +8,19 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import by.goncharov.dragon.server.utils.DragonUtils;
+import by.goncharov.dragon.server.utils.DragonWebConstants;
+import by.goncharov.dragon.server.utils.DragonWebUtils;
 import by.goncharov.dragon.server.utils.NavigationConstants;
 
 /**
@@ -31,9 +34,13 @@ import by.goncharov.dragon.server.utils.NavigationConstants;
 @Component
 public class LoginBean {
 
+    private Logger logger = Logger.getLogger(LoginBean.class);
+
     @Autowired
     @Qualifier("authenticationManager")
     protected AuthenticationManager authenticationManager;
+
+    private static final String LOGIN_FORM_DO_LOGIN = "loginForm:doLogin";
 
     private String username;
 
@@ -63,17 +70,25 @@ public class LoginBean {
             Authentication request = new UsernamePasswordAuthenticationToken(this.username, this.password);
             Authentication result = authenticationManager.authenticate(request);
             SecurityContextHolder.getContext().setAuthentication(result);
+            return NavigationConstants.LOGIN_SUCCESS;
+        } catch (AuthenticationServiceException e) {
+            logger.error(DragonWebUtils.getFormattedProperty(DragonWebConstants.RESOURCE_BUNDLE_UI,
+                    "login_page_jdbc_error", e.getMessage()));
+            DragonWebUtils.sendFacesMessage(LOGIN_FORM_DO_LOGIN, "login_page_jdbc_error_ui", null,
+                    FacesMessage.SEVERITY_ERROR);
+            return null;
         } catch (AuthenticationException e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    e.getMessage(), e.getMessage()));
+            logger.error(DragonWebUtils.getFormattedProperty(DragonWebConstants.RESOURCE_BUNDLE_UI,
+                    "login_page_authentication_error", this.username, this.password, e.getMessage()));
+            DragonWebUtils.sendFacesMessage(LOGIN_FORM_DO_LOGIN, "login_page_authentication_error_ui", null,
+                    FacesMessage.SEVERITY_ERROR);
             return null;
         }
-        return NavigationConstants.LOGIN_SUCCESS;
     }
 
     public String doLogout() throws IOException {
-        this.username = DragonUtils.STRING_EMPTY;
-        this.password = DragonUtils.STRING_EMPTY;
+        this.username = DragonWebConstants.STRING_EMPTY;
+        this.password = DragonWebConstants.STRING_EMPTY;
 
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         context.redirect(context.getRequestContextPath() + "/j_spring_security_logout");
