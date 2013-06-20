@@ -17,4 +17,8 @@
         </el-resolver>
     </application>
 
+    <lifecycle>
+       <phase-listener>by.goncharov.dragon.server.web.SessionPhaseListener</phase-listener>
+    </lifecycle>
+
 </faces-config>
