@@ -1,4 +1,4 @@
-package by.goncharov.dragon.server.jsf;
+package by.goncharov.dragon.server.jsf.bean;
 
 import java.io.IOException;
 

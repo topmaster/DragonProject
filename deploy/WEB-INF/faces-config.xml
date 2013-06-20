@@ -18,7 +18,7 @@
     </application>
 
     <lifecycle>
-       <phase-listener>by.goncharov.dragon.server.web.SessionPhaseListener</phase-listener>
+       <phase-listener>by.goncharov.dragon.server.jsf.listener.SessionPhaseListener</phase-listener>
     </lifecycle>
 
 </faces-config>
