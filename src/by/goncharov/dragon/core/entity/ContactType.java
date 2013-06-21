@@ -13,6 +13,7 @@ import by.goncharov.dragon.core.utils.CommonConstants;
  */
 public enum ContactType {
 
+    OWNER(CommonConstants.CONTACT_TYPE_OWNER, "contact.type.owner"),
     FAMILIAR(CommonConstants.CONTACT_TYPE_ACQUAINTANCE, "contact.type.acquaintance"),
     CANDIDATE(CommonConstants.CONTACT_TYPE_CANDIDATE, "contact.type.candidate"),
     CUSTOMER(CommonConstants.CONTACT_TYPE_CUSTOMER, "contact.type.customer"),

@@ -39,8 +39,14 @@ public class Contact implements Serializable {
     @Column(name = "middlename")
     private String middlename;
 
-    @Column(name = "phone_number")
-    private String phoneNumber;
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "mobile_number")
+    private String mobileNumber;
+
+    @Column(name = "work_phone_number")
+    private String workPhoneNumber;
 
     @Column(name = "birthdate")
     private Date birthdate;
@@ -87,12 +93,28 @@ public class Contact implements Serializable {
         this.middlename = middlename;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public String getWorkPhoneNumber() {
+        return workPhoneNumber;
+    }
+
+    public void setWorkPhoneNumber(String workPhoneNumber) {
+        this.workPhoneNumber = workPhoneNumber;
     }
 
     public Date getBirthdate() {
