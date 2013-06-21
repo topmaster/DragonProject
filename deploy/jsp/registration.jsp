@@ -7,7 +7,7 @@
 --%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>
-<%@ taglib prefix="rich" uri="http://java.sun.com/jsf/html" %>
+<%@ taglib prefix="rich" uri="http://richfaces.org/rich" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -46,8 +46,9 @@
                             <h:inputText id="firstname"
                                          styleClass="inputText inputBig"
                                          required="true"
+                                         maxlength="255"
                                          requiredMessage="#{msg.registration_page_firstname_required}"
-                                         value=""/>
+                                         value="#{newUserBean.firstname}"/>
                         </td>
                     </tr>
 
@@ -66,8 +67,9 @@
                             <h:inputText id="lastname"
                                          styleClass="inputText inputBig"
                                          required="true"
+                                         maxlength="255"
                                          requiredMessage="#{msg.registration_page_lastname_required}"
-                                         value=""/>
+                                         value="#{newUserBean.lastname}"/>
                         </td>
                     </tr>
 
@@ -84,7 +86,8 @@
                         <td>
                             <h:inputText id="middlename"
                                          styleClass="inputText inputBig"
-                                         value=""/>
+                                         maxlength="255"
+                                         value="#{newUserBean.middlename}"/>
                         </td>
                     </tr>
 
@@ -99,9 +102,19 @@
                             <h:outputLabel value="#{msg.registration_page_label_birthdate}"/>
                         </td>
                         <td>
+                            <rich:calendar value="#{newUserBean.birthdate}"
+                                           locale="en/US"
+                                           popup="true"
+                                           datePattern="dd/MM/yyyy"
+                                           showApplyButton="false"
+                                           cellWidth="24px"
+                                           cellHeight="22px"
+                                           style="width:200px"/>
+<%--
                             <h:inputText id="birthdate"
                                          styleClass="inputText inputBig"
                                          value=""/>
+--%>
                         </td>
                     </tr>
 
@@ -120,25 +133,45 @@
                             <h:inputText id="email"
                                          styleClass="inputText inputBig"
                                          required="true"
+                                         maxlength="255"
                                          requiredMessage="#{msg.registration_page_email_required}"
-                                         value=""/>
+                                         value="#{newUserBean.email}"/>
                         </td>
                     </tr>
 
                     <tr>
                         <td></td>
                         <td>
-                            <rich:message for="phone" styleClass="error_main"/>
+                            <rich:message for="mobile_phone" styleClass="error_main"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h:outputLabel value="#{msg.registration_page_label_phone}"/>
+                            <h:outputLabel value="#{msg.registration_page_label_mobile_phone}"/>
                         </td>
                         <td>
-                            <h:inputText id="phone"
+                            <h:inputText id="mobile_phone"
                                          styleClass="inputText inputBig"
-                                         value=""/>
+                                         maxlength="55"
+                                         value="#{newUserBean.mobileNumber}"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td>
+                            <rich:message for="work_phone" styleClass="error_main"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="#{msg.registration_page_label_work_phone}"/>
+                        </td>
+                        <td>
+                            <h:inputText id="work_phone"
+                                         styleClass="inputText inputBig"
+                                         maxlength="55"
+                                         value="#{newUserBean.workPhoneNumber}"/>
                         </td>
                     </tr>
 
@@ -157,8 +190,9 @@
                             <h:inputText id="login"
                                          styleClass="inputText inputBig"
                                          required="true"
+                                         maxlength="255"
                                          requiredMessage="#{msg.registration_page_login_required}"
-                                         value=""/>
+                                         value="#{newUserBean.login}"/>
                         </td>
                     </tr>
 
@@ -177,8 +211,9 @@
                             <h:inputSecret id="password"
                                          styleClass="inputText inputBig"
                                          required="true"
+                                         maxlength="255"
                                          requiredMessage="#{msg.registration_page_password_required}"
-                                         value=""/>
+                                         value="#{newUserBean.password}"/>
                         </td>
                     </tr>
 
@@ -197,8 +232,10 @@
                             <h:inputSecret id="conf_password"
                                          styleClass="inputText inputBig"
                                          required="true"
+                                         maxlength="255"
                                          requiredMessage="#{msg.registration_page_password_confirm_required}"
-                                         value=""/>
+                                         value="#{newUserBean.confirmPassword}"
+                                         validator="#{newUserBean.validateConfirmPassword}"/>
                         </td>
                     </tr>
                     <tr>

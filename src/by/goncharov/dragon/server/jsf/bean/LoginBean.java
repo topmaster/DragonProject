@@ -34,7 +34,7 @@ import by.goncharov.dragon.server.utils.NavigationConstants;
 @Component
 public class LoginBean {
 
-    private Logger logger = Logger.getLogger(LoginBean.class);
+    private static final Logger LOGGER = Logger.getLogger(LoginBean.class);
 
     @Autowired
     @Qualifier("authenticationManager")
@@ -67,18 +67,16 @@ public class LoginBean {
 
     public String doLogin() throws IOException {
         try {
-            Authentication request = new UsernamePasswordAuthenticationToken(this.username, this.password);
-            Authentication result = authenticationManager.authenticate(request);
-            SecurityContextHolder.getContext().setAuthentication(result);
+            loginService(this.username, this.password);
             return NavigationConstants.LOGIN_SUCCESS;
         } catch (AuthenticationServiceException e) {
-            logger.error(DragonWebUtils.getFormattedProperty(DragonWebConstants.RESOURCE_BUNDLE_UI,
+            LOGGER.error(DragonWebUtils.getFormattedProperty(DragonWebConstants.RESOURCE_BUNDLE_UI,
                     "login_page_jdbc_error", e.getMessage()));
             DragonWebUtils.sendFacesMessage(LOGIN_FORM_DO_LOGIN, "login_page_jdbc_error_ui", null,
                     FacesMessage.SEVERITY_ERROR);
             return null;
         } catch (AuthenticationException e) {
-            logger.error(DragonWebUtils.getFormattedProperty(DragonWebConstants.RESOURCE_BUNDLE_UI,
+            LOGGER.error(DragonWebUtils.getFormattedProperty(DragonWebConstants.RESOURCE_BUNDLE_UI,
                     "login_page_authentication_error", this.username, this.password, e.getMessage()));
             DragonWebUtils.sendFacesMessage(LOGIN_FORM_DO_LOGIN, "login_page_authentication_error_ui", null,
                     FacesMessage.SEVERITY_ERROR);
@@ -90,10 +88,19 @@ public class LoginBean {
         this.username = DragonWebConstants.STRING_EMPTY;
         this.password = DragonWebConstants.STRING_EMPTY;
 
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        context.redirect(context.getRequestContextPath() + "/j_spring_security_logout");
-        FacesContext.getCurrentInstance().responseComplete();
+        logoutService();
 
         return NavigationConstants.LOGOUT_SUCCESS;
+    }
+
+    private void loginService(String username, String password) {
+        Authentication request = new UsernamePasswordAuthenticationToken(username, password);
+        Authentication result = authenticationManager.authenticate(request);
+        SecurityContextHolder.getContext().setAuthentication(result);
+    }
+
+    private void logoutService() throws IOException {ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        context.redirect(context.getRequestContextPath() + "/j_spring_security_logout");
+        FacesContext.getCurrentInstance().responseComplete();
     }
 }

@@ -7,7 +7,7 @@
 --%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>
-<%@ taglib prefix="rich" uri="http://java.sun.com/jsf/html" %>
+<%@ taglib prefix="rich" uri="http://richfaces.org/rich" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -27,7 +27,7 @@
 
             <h3><h:outputText value="#{msg.login_page_header}"/></h3>
 
-            <h:outputLink styleClass="forgot_pass" value="">
+            <h:outputLink styleClass="forgot_pass" value="#">
                 <h:outputText value="#{msg.login_page_link_forgot_password}"/>
             </h:outputLink>
 
@@ -53,6 +53,7 @@
                             <h:inputText id="username"
                                          styleClass="inputText inputBig"
                                          required="true"
+                                         maxlength="255"
                                          requiredMessage="#{msg.login_page_login_required}"
                                          value="#{loginBean.username}"/>
                         </td>
@@ -71,6 +72,7 @@
                             <h:inputSecret id="password"
                                            styleClass="inputText inputBig"
                                            required="true"
+                                           maxlength="255"
                                            requiredMessage="#{msg.login_page_password_required}"
                                            value="#{loginBean.password}"/>
                         </td>
