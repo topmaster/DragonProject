@@ -1,14 +1,17 @@
 package by.goncharov.dragon.server.jsf.bean;
 
+import java.util.Date;
 import java.util.regex.Pattern;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
+import javax.faces.component.html.HtmlInputSecret;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
+
+import org.apache.log4j.Logger;
 
 import by.goncharov.dragon.server.utils.DragonWebConstants;
 import by.goncharov.dragon.server.utils.DragonWebUtils;
@@ -23,17 +26,25 @@ import by.goncharov.dragon.server.utils.DragonWebUtils;
 @RequestScoped
 public class NewUserBean {
 
-    private static final String PASSWORD_PATTERN = "[^A-Za-z0-9\\.\\@_\\-~#]+";
+    private static final Logger LOGGER = Logger.getLogger(LoginBean.class);
+
+    private static final String PASSWORD_INVALID_LENGTH_PROP_KEY = "registration_page_password_invalid_length";
+    private static final String PASSWORD_INVALID_PATTERN_PROP_KEY = "registration_page_password_invalid_pattern";
+    private static final String PASSWORD_INVALID_CONFIRM_PROP_KEY = "registration_page_password_invalid_confirm";
+    private static final String REG_FORM_PASSWORD_ID = "reg_form:password";
+    private static final String PASSWORD_PATTERN = "[a-zA-Z0-9]{5,255}";
+
+    private HtmlInputSecret passwordBind;
 
     private String firstname;
     private String lastname;
     private String middlename;
-    private String birthdate;
+    private Date birthdate;
     private String email;
     private String mobileNumber;
     private String workPhoneNumber;
     private String login;
-    private UIInput password;
+    private String password;
     private String confirmPassword;
 
     public String getFirstname() {
@@ -60,11 +71,11 @@ public class NewUserBean {
         this.middlename = middlename;
     }
 
-    public String getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(String birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -100,11 +111,11 @@ public class NewUserBean {
         this.login = login;
     }
 
-    public UIInput getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(UIInput password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -116,27 +127,45 @@ public class NewUserBean {
         this.confirmPassword = confirmPassword;
     }
 
-    public void validateConfirmPassword(FacesContext facesContext, UIComponent uIComponent, Object value) throws
-                ValidatorException {
+    public HtmlInputSecret getPasswordBind() {
+        return passwordBind;
+    }
 
-        boolean b = Pattern.matches(PASSWORD_PATTERN, value.toString());
-        if (!b) {
-            DragonWebUtils.sendFacesMessage("reg_form:password", "registration_page_password_invalid_pattern", null,
-                                FacesMessage.SEVERITY_ERROR);
-            throw new ValidatorException(new FacesMessage(DragonWebUtils.getFormattedProperty(
-                    DragonWebConstants.RESOURCE_BUNDLE_UI, "registration_page_password_invalid_pattern")));
-        }
-        if (!value.equals(password.getLocalValue().toString())) {
-            DragonWebUtils.sendFacesMessage("reg_form:password", "registration_page_password_invalid_confirm", null,
-                                FacesMessage.SEVERITY_ERROR);
-            throw new ValidatorException(new FacesMessage(DragonWebUtils.getFormattedProperty(
-                    DragonWebConstants.RESOURCE_BUNDLE_UI, "registration_page_password_invalid_confirm")));
-        }
-        if (value.toString().length() > 5) {
-            DragonWebUtils.sendFacesMessage("reg_form:password", "registration_page_password_invalid_length", null,
+    public void setPasswordBind(HtmlInputSecret passwordBind) {
+        this.passwordBind = passwordBind;
+    }
+
+    public void validatePassword(FacesContext facesContext, UIComponent uIComponent, Object value) throws
+                    ValidatorException {
+        String password = value.toString();
+        if (password.length() < 5) {
+            LOGGER.error(DragonWebUtils.getFormattedProperty(DragonWebConstants.RESOURCE_BUNDLE_UI,
+                    PASSWORD_INVALID_LENGTH_PROP_KEY));
+            DragonWebUtils.sendFacesMessage(REG_FORM_PASSWORD_ID, PASSWORD_INVALID_LENGTH_PROP_KEY, null,
                     FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(new FacesMessage(DragonWebUtils.getFormattedProperty(
-                    DragonWebConstants.RESOURCE_BUNDLE_UI, "registration_page_password_invalid_length")));
+                    DragonWebConstants.RESOURCE_BUNDLE_UI, PASSWORD_INVALID_LENGTH_PROP_KEY)));
+        }
+        boolean b = Pattern.matches(PASSWORD_PATTERN, password);
+        if (!b) {
+            LOGGER.error(DragonWebUtils.getFormattedProperty(DragonWebConstants.RESOURCE_BUNDLE_UI,
+                    PASSWORD_INVALID_PATTERN_PROP_KEY));
+            DragonWebUtils.sendFacesMessage(REG_FORM_PASSWORD_ID, PASSWORD_INVALID_PATTERN_PROP_KEY, null,
+                    FacesMessage.SEVERITY_ERROR);
+            throw new ValidatorException(new FacesMessage(DragonWebUtils.getFormattedProperty(
+                    DragonWebConstants.RESOURCE_BUNDLE_UI, PASSWORD_INVALID_PATTERN_PROP_KEY)));
+        }
+        if (!DragonWebUtils.isStringEmpty(passwordBind.getSubmittedValue().toString())) {
+            validateConfirmPassword(value);
+        }
+    }
+
+    private void validateConfirmPassword(Object password) throws ValidatorException {
+        if (!password.equals(passwordBind.getSubmittedValue())) {
+            LOGGER.error(DragonWebUtils.getFormattedProperty(DragonWebConstants.RESOURCE_BUNDLE_UI,
+                    PASSWORD_INVALID_CONFIRM_PROP_KEY));
+            throw new ValidatorException(new FacesMessage(DragonWebUtils.getFormattedProperty(
+                    DragonWebConstants.RESOURCE_BUNDLE_UI, PASSWORD_INVALID_CONFIRM_PROP_KEY)));
         }
     }
 }

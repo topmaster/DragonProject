@@ -48,7 +48,10 @@
                                          required="true"
                                          maxlength="255"
                                          requiredMessage="#{msg.registration_page_firstname_required}"
-                                         value="#{newUserBean.firstname}"/>
+                                         validatorMessage="#{msg.registration_page_firstname_invalid_pattern}"
+                                         value="#{newUserBean.firstname}">
+                                <f:validateRegex pattern="[a-zA-Z]{2,255}"/>
+                            </h:inputText>
                         </td>
                     </tr>
 
@@ -69,7 +72,10 @@
                                          required="true"
                                          maxlength="255"
                                          requiredMessage="#{msg.registration_page_lastname_required}"
-                                         value="#{newUserBean.lastname}"/>
+                                         validatorMessage="#{msg.registration_page_lastname_invalid_pattern}"
+                                         value="#{newUserBean.lastname}">
+                                <f:validateRegex pattern="[a-zA-Z]{2,255}"/>
+                            </h:inputText>
                         </td>
                     </tr>
 
@@ -87,7 +93,10 @@
                             <h:inputText id="middlename"
                                          styleClass="inputText inputBig"
                                          maxlength="255"
-                                         value="#{newUserBean.middlename}"/>
+                                         validatorMessage="#{msg.registration_page_middlename_invalid_pattern}"
+                                         value="#{newUserBean.middlename}">
+                                <f:validateRegex pattern="[a-zA-Z]{2,255}"/>
+                            </h:inputText>
                         </td>
                     </tr>
 
@@ -110,11 +119,6 @@
                                            cellWidth="24px"
                                            cellHeight="22px"
                                            style="width:200px"/>
-<%--
-                            <h:inputText id="birthdate"
-                                         styleClass="inputText inputBig"
-                                         value=""/>
---%>
                         </td>
                     </tr>
 
@@ -135,7 +139,10 @@
                                          required="true"
                                          maxlength="255"
                                          requiredMessage="#{msg.registration_page_email_required}"
-                                         value="#{newUserBean.email}"/>
+                                         validatorMessage="#{msg.registration_page_email_invalid_pattern}"
+                                         value="#{newUserBean.email}">
+                                <f:validateRegex pattern="[0-9A-Za-z._%+-]+@[0-9A-Za-z.-]+\.[A-Za-z]{2,4}"/>
+                            </h:inputText>
                         </td>
                     </tr>
 
@@ -153,7 +160,10 @@
                             <h:inputText id="mobile_phone"
                                          styleClass="inputText inputBig"
                                          maxlength="55"
-                                         value="#{newUserBean.mobileNumber}"/>
+                                         validatorMessage="#{msg.registration_page_mobile_invalid_pattern}"
+                                         value="#{newUserBean.mobileNumber}">
+                                <f:validateRegex pattern="8[0-9]{3}[0-9]{3}[0-9]{2}[0-9]{2}|\+[0-9]{3}[0-9]{2}[0-9]{3}[0-9]{2}[0-9]{2}"/>
+                            </h:inputText>
                         </td>
                     </tr>
 
@@ -171,7 +181,10 @@
                             <h:inputText id="work_phone"
                                          styleClass="inputText inputBig"
                                          maxlength="55"
-                                         value="#{newUserBean.workPhoneNumber}"/>
+                                         validatorMessage="#{msg.registration_page_work_phone_invalid_pattern}"
+                                         value="#{newUserBean.workPhoneNumber}">
+                                <f:validateRegex pattern="8[0-9]{3}[0-9]{3}[0-9]{2}[0-9]{2}|\+[0-9]{3}[0-9]{2}[0-9]{3}[0-9]{2}[0-9]{2}"/>
+                            </h:inputText>
                         </td>
                     </tr>
 
@@ -192,7 +205,10 @@
                                          required="true"
                                          maxlength="255"
                                          requiredMessage="#{msg.registration_page_login_required}"
-                                         value="#{newUserBean.login}"/>
+                                         validatorMessage="#{msg.registration_page_login_invalid_pattern}"
+                                         value="#{newUserBean.login}">
+                                <f:validateRegex pattern="[a-zA-Z0-9_]{5,255}"/>
+                            </h:inputText>
                         </td>
                     </tr>
 
@@ -209,11 +225,12 @@
                         </td>
                         <td>
                             <h:inputSecret id="password"
-                                         styleClass="inputText inputBig"
-                                         required="true"
-                                         maxlength="255"
-                                         requiredMessage="#{msg.registration_page_password_required}"
-                                         value="#{newUserBean.password}"/>
+                                           styleClass="inputText inputBig"
+                                           required="true"
+                                           maxlength="255"
+                                           requiredMessage="#{msg.registration_page_password_required}"
+                                           value="#{newUserBean.password}"
+                                           validator="#{newUserBean.validatePassword}"/>
                         </td>
                     </tr>
 
@@ -230,12 +247,12 @@
                         </td>
                         <td>
                             <h:inputSecret id="conf_password"
-                                         styleClass="inputText inputBig"
-                                         required="true"
-                                         maxlength="255"
-                                         requiredMessage="#{msg.registration_page_password_confirm_required}"
-                                         value="#{newUserBean.confirmPassword}"
-                                         validator="#{newUserBean.validateConfirmPassword}"/>
+                                           styleClass="inputText inputBig"
+                                           required="true"
+                                           maxlength="255"
+                                           requiredMessage="#{msg.registration_page_password_confirm_required}"
+                                           value="#{newUserBean.confirmPassword}"
+                                           binding="#{newUserBean.passwordBind}"/>
                         </td>
                     </tr>
                     <tr>

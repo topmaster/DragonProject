@@ -42,4 +42,12 @@ public class DragonWebUtils {
         FacesMessage facesMessage = new FacesMessage(severity, getProperty(DragonWebConstants.RESOURCE_BUNDLE_UI, propName), errDetail);
         FacesContext.getCurrentInstance().addMessage(id, facesMessage);
     }
+
+    public static boolean isStringEmpty(String str) {
+        if (str == null || str.length() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
