@@ -9,12 +9,12 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 
 /**
- * Description of DragonWebUtils class
+ * Description of DrgWebUtils class
  *
  * @author Mikita Hancharou
  * @created 18.06.13 11:55
  */
-public class DragonWebUtils {
+public class DrgWebUtils {
 
     public static String getFormattedProperty(String propFile, String propName, Object... params) {
         String property = getProperty(propFile, propName);
@@ -39,7 +39,8 @@ public class DragonWebUtils {
     }
 
     public static void sendFacesMessage(String id, String propName, String errDetail, Severity severity) {
-        FacesMessage facesMessage = new FacesMessage(severity, getProperty(DragonWebConstants.RESOURCE_BUNDLE_UI, propName), errDetail);
+        FacesMessage facesMessage = new FacesMessage(severity,
+                getProperty(DrgWebConstants.RESOURCE_BUNDLE_UI, propName), errDetail);
         FacesContext.getCurrentInstance().addMessage(id, facesMessage);
     }
 

@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
-import by.goncharov.dragon.server.utils.DragonWebConstants;
-import by.goncharov.dragon.server.utils.DragonWebUtils;
+import by.goncharov.dragon.server.utils.DrgWebConstants;
+import by.goncharov.dragon.server.utils.DrgWebUtils;
 
 public class SessionPhaseListener implements PhaseListener {
 
@@ -48,9 +48,9 @@ public class SessionPhaseListener implements PhaseListener {
                 viewHandler.renderView(facesContext, view);
                 facesContext.responseComplete();
             } catch (Throwable t) {
-                logger.error(DragonWebUtils.getFormattedProperty(DragonWebConstants.RESOURCE_BUNDLE_UI,
+                logger.error(DrgWebUtils.getFormattedProperty(DrgWebConstants.RESOURCE_BUNDLE_UI,
                         "session_denied_error"));
-                throw new FacesException(DragonWebUtils.getFormattedProperty(DragonWebConstants.RESOURCE_BUNDLE_UI,
+                throw new FacesException(DrgWebUtils.getFormattedProperty(DrgWebConstants.RESOURCE_BUNDLE_UI,
                         "session_denied_error"), t);
             }
         }
