@@ -13,20 +13,20 @@ import javax.faces.validator.ValidatorException;
 
 import org.apache.log4j.Logger;
 
-import by.goncharov.dragon.server.utils.DrgWebConstants;
-import by.goncharov.dragon.server.utils.DrgWebUtils;
+import by.goncharov.dragon.server.utils.DrgnWebConstants;
+import by.goncharov.dragon.server.utils.DrgnWebUtils;
 
 /**
- * Description of NewUserBean class
+ * Description of DrgnNewUserBean class
  *
  * @author Mikita Hancharou
  * @created 21.06.13 16:22
  */
 @ManagedBean(name = "newUserBean")
 @RequestScoped
-public class NewUserBean {
+public class DrgnNewUserBean {
 
-    private static final Logger LOGGER = Logger.getLogger(DrgLoginBean.class);
+    private static final Logger LOGGER = Logger.getLogger(DrgnLoginBean.class);
 
     private static final String PASSWORD_INVALID_LENGTH_PROP_KEY = "registration_page_password_invalid_length";
     private static final String PASSWORD_INVALID_PATTERN_PROP_KEY = "registration_page_password_invalid_pattern";
@@ -135,39 +135,37 @@ public class NewUserBean {
         this.passwordBind = passwordBind;
     }
 
-    public void validatePassword(FacesContext facesContext, UIComponent uIComponent, Object value) throws
-                    ValidatorException {
+    public void validatePassword(FacesContext facesContext, UIComponent uIComponent, Object value)
+            throws ValidatorException {
         String password = value.toString();
         if (password.length() < 5) {
-            LOGGER.error(DrgWebUtils.getFormattedProperty(DrgWebConstants.RESOURCE_BUNDLE_UI,
+            LOGGER.error(DrgnWebUtils.getFormattedProperty(DrgnWebConstants.RESOURCE_BUNDLE_UI,
                     PASSWORD_INVALID_LENGTH_PROP_KEY));
-            DrgWebUtils.sendFacesMessage(REG_FORM_PASSWORD_ID, PASSWORD_INVALID_LENGTH_PROP_KEY, null,
+            DrgnWebUtils.sendFacesMessage(REG_FORM_PASSWORD_ID, PASSWORD_INVALID_LENGTH_PROP_KEY, null,
                     FacesMessage.SEVERITY_ERROR);
-            throw new ValidatorException(new FacesMessage(
-                    DrgWebUtils.getFormattedProperty(DrgWebConstants.RESOURCE_BUNDLE_UI,
-                            PASSWORD_INVALID_LENGTH_PROP_KEY)));
+            throw new ValidatorException(new FacesMessage(DrgnWebUtils
+                    .getFormattedProperty(DrgnWebConstants.RESOURCE_BUNDLE_UI, PASSWORD_INVALID_LENGTH_PROP_KEY)));
         }
         boolean matches = Pattern.matches(PASSWORD_PATTERN, password);
         if (!matches) {
-            LOGGER.error(DrgWebUtils.getFormattedProperty(DrgWebConstants.RESOURCE_BUNDLE_UI,
+            LOGGER.error(DrgnWebUtils.getFormattedProperty(DrgnWebConstants.RESOURCE_BUNDLE_UI,
                     PASSWORD_INVALID_PATTERN_PROP_KEY));
-            DrgWebUtils.sendFacesMessage(REG_FORM_PASSWORD_ID, PASSWORD_INVALID_PATTERN_PROP_KEY, null,
+            DrgnWebUtils.sendFacesMessage(REG_FORM_PASSWORD_ID, PASSWORD_INVALID_PATTERN_PROP_KEY, null,
                     FacesMessage.SEVERITY_ERROR);
-            throw new ValidatorException(new FacesMessage(
-                    DrgWebUtils.getFormattedProperty(DrgWebConstants.RESOURCE_BUNDLE_UI,
-                            PASSWORD_INVALID_PATTERN_PROP_KEY)));
+            throw new ValidatorException(new FacesMessage(DrgnWebUtils
+                    .getFormattedProperty(DrgnWebConstants.RESOURCE_BUNDLE_UI, PASSWORD_INVALID_PATTERN_PROP_KEY)));
         }
-        if (!DrgWebUtils.isStringEmpty(passwordBind.getSubmittedValue().toString())) {
+        if (!DrgnWebUtils.isStringEmpty(passwordBind.getSubmittedValue().toString())) {
             validateConfirmPassword(value);
         }
     }
 
     private void validateConfirmPassword(Object password) throws ValidatorException {
         if (!password.equals(passwordBind.getSubmittedValue())) {
-            LOGGER.error(DrgWebUtils.getFormattedProperty(DrgWebConstants.RESOURCE_BUNDLE_UI,
+            LOGGER.error(DrgnWebUtils.getFormattedProperty(DrgnWebConstants.RESOURCE_BUNDLE_UI,
                     PASSWORD_INVALID_CONFIRM_PROP_KEY));
             throw new ValidatorException(new FacesMessage(
-                    DrgWebUtils.getFormattedProperty(DrgWebConstants.RESOURCE_BUNDLE_UI,
+                    DrgnWebUtils.getFormattedProperty(DrgnWebConstants.RESOURCE_BUNDLE_UI,
                             PASSWORD_INVALID_CONFIRM_PROP_KEY)));
         }
     }

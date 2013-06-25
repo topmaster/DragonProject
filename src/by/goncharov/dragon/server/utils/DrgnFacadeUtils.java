@@ -7,12 +7,12 @@ import by.goncharov.dragon.core.common.UserService;
 import by.goncharov.dragon.server.facades.FacadeUserService;
 
 /**
- * Description of DrgFacadeUtils class
+ * Description of DrgnFacadeUtils class
  *
  * @author Mikita Hancharou
  * @created 25.06.13 15:29
  */
-public class DrgFacadeUtils {
+public class DrgnFacadeUtils {
 
     public static UserService getUserService(){
         return getFacadeBean("FacadeUserService", FacadeUserService.class).getUserService();

@@ -9,12 +9,12 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 
 /**
- * Description of DrgWebUtils class
+ * Description of DrgnWebUtils class
  *
  * @author Mikita Hancharou
  * @created 18.06.13 11:55
  */
-public class DrgWebUtils {
+public class DrgnWebUtils {
 
     public static String getFormattedProperty(String propFile, String propName, Object... params) {
         String property = getProperty(propFile, propName);
@@ -40,7 +40,7 @@ public class DrgWebUtils {
 
     public static void sendFacesMessage(String id, String propName, String errDetail, Severity severity) {
         FacesMessage facesMessage = new FacesMessage(severity,
-                getProperty(DrgWebConstants.RESOURCE_BUNDLE_UI, propName), errDetail);
+                getProperty(DrgnWebConstants.RESOURCE_BUNDLE_UI, propName), errDetail);
         FacesContext.getCurrentInstance().addMessage(id, facesMessage);
     }
 

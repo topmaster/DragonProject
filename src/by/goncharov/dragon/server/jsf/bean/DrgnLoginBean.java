@@ -10,22 +10,22 @@ import org.apache.log4j.Logger;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 
-import by.goncharov.dragon.server.utils.DrgFacadeUtils;
-import by.goncharov.dragon.server.utils.DrgWebConstants;
-import by.goncharov.dragon.server.utils.DrgWebUtils;
+import by.goncharov.dragon.server.utils.DrgnFacadeUtils;
+import by.goncharov.dragon.server.utils.DrgnWebConstants;
+import by.goncharov.dragon.server.utils.DrgnWebUtils;
 import by.goncharov.dragon.server.utils.NavigationConstants;
 
 /**
- * Description of DrgLoginBean class
+ * Description of DrgnLoginBean class
  *
  * @author Mikita Hancharou
  * @created 13.06.13 15:05
  */
 @ManagedBean(name = "loginBean")
 @RequestScoped
-public class DrgLoginBean {
+public class DrgnLoginBean {
 
-    private static final Logger LOGGER = Logger.getLogger(DrgLoginBean.class);
+    private static final Logger LOGGER = Logger.getLogger(DrgnLoginBean.class);
 
     private static final String LOGIN_FORM_DO_LOGIN = "loginForm:doLogin";
 
@@ -33,7 +33,7 @@ public class DrgLoginBean {
 
     private String password;
 
-    public DrgLoginBean() {
+    public DrgnLoginBean() {
     }
 
     public String getUsername() {
@@ -54,28 +54,28 @@ public class DrgLoginBean {
 
     public String doLogin() throws IOException {
         try {
-            DrgFacadeUtils.getUserService().loginService(this.username, this.password);
+            DrgnFacadeUtils.getUserService().loginService(this.username, this.password);
             return NavigationConstants.LOGIN_SUCCESS;
         } catch (AuthenticationServiceException e) {
-            LOGGER.error(DrgWebUtils.getFormattedProperty(DrgWebConstants.RESOURCE_BUNDLE_UI, "login_page_jdbc_error",
+            LOGGER.error(DrgnWebUtils.getFormattedProperty(DrgnWebConstants.RESOURCE_BUNDLE_UI, "login_page_jdbc_error",
                     e.getMessage()));
-            DrgWebUtils.sendFacesMessage(LOGIN_FORM_DO_LOGIN, "login_page_jdbc_error_ui", null,
+            DrgnWebUtils.sendFacesMessage(LOGIN_FORM_DO_LOGIN, "login_page_jdbc_error_ui", null,
                     FacesMessage.SEVERITY_ERROR);
             return null;
         } catch (AuthenticationException e) {
-            LOGGER.error(DrgWebUtils.getFormattedProperty(DrgWebConstants.RESOURCE_BUNDLE_UI,
+            LOGGER.error(DrgnWebUtils.getFormattedProperty(DrgnWebConstants.RESOURCE_BUNDLE_UI,
                     "login_page_authentication_error", this.username, this.password, e.getMessage()));
-            DrgWebUtils.sendFacesMessage(LOGIN_FORM_DO_LOGIN, "login_page_authentication_error_ui", null,
+            DrgnWebUtils.sendFacesMessage(LOGIN_FORM_DO_LOGIN, "login_page_authentication_error_ui", null,
                     FacesMessage.SEVERITY_ERROR);
             return null;
         }
     }
 
     public String doLogout() throws IOException {
-        this.username = DrgWebConstants.STRING_EMPTY;
-        this.password = DrgWebConstants.STRING_EMPTY;
+        this.username = DrgnWebConstants.STRING_EMPTY;
+        this.password = DrgnWebConstants.STRING_EMPTY;
 
-        DrgFacadeUtils.getUserService().logoutService();
+        DrgnFacadeUtils.getUserService().logoutService();
 
         return NavigationConstants.LOGOUT_SUCCESS;
     }
