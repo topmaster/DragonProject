@@ -25,7 +25,7 @@ public class Aim implements Serializable {
     @Id
     @Column(name = "aim_id")
     @GeneratedValue
-    private int aimId;
+    private Long aimId;
 
     @Column(name = "aim_name")
     private String aimName;
@@ -50,11 +50,11 @@ public class Aim implements Serializable {
     @JoinColumn(name = "fk_aim_category_id", nullable = false)
     private AimCategory aimCategory;
 
-    public int getAimId() {
+    public Long getAimId() {
         return aimId;
     }
 
-    public void setAimId(int aimId) {
+    public void setAimId(Long aimId) {
         this.aimId = aimId;
     }
 

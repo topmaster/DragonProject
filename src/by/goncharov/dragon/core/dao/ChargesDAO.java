@@ -10,11 +10,9 @@ import by.goncharov.dragon.core.entity.Charges;
  */
 public interface ChargesDAO {
 
-    int save(Charges charges);
-
-    void update(Charges charges);
+    void save(Charges charges);
 
     void delete(Charges charges);
 
-    Charges findByChargesId(int chargesId);
+    Charges find(Long chargesId);
 }

@@ -28,7 +28,7 @@ public class GoodsCategory implements Serializable {
     @Id
     @Column(name = "goods_category_id")
     @GeneratedValue
-    private int goodsCatId;
+    private Long goodsCatId;
 
     @Column(unique = true, name = "goods_category_name")
     private String goodsCategoryName;
@@ -37,11 +37,11 @@ public class GoodsCategory implements Serializable {
     @JoinColumn(name = "charges_id", nullable = true)
     private Set<Charges> chargesSet;
 
-    public int getGoodsCatId() {
+    public Long getGoodsCatId() {
         return goodsCatId;
     }
 
-    public void setGoodsCatId(int goodsCatId) {
+    public void setGoodsCatId(Long goodsCatId) {
         this.goodsCatId = goodsCatId;
     }
 

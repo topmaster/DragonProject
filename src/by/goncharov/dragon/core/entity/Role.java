@@ -28,7 +28,7 @@ public class Role implements Serializable {
     @Id
     @Column(name = "role_id")
     @GeneratedValue
-    private int roleId;
+    private Long roleId;
 
     @Column(unique = true, name = "role_name")
     private String roleName;
@@ -37,11 +37,11 @@ public class Role implements Serializable {
     @JoinColumn(name = "user_id", nullable = true)
     private Set<User> userSet;
 
-    public int getRoleId() {
+    public Long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
 

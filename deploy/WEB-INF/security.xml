@@ -19,14 +19,10 @@
 
     <security:authentication-manager alias="authenticationManager">
         <security:authentication-provider>
-            <!--<security:jdbc-user-service data-source-ref="dataSource"/>-->
-
             <security:jdbc-user-service
                     data-source-ref="dataSource"
                     users-by-username-query="select username, password, fk_role_id from users where username = ?"
-                    authorities-by-username-query="select u.username, ur.role_name from users u, role ur where ur.role_id = u.fk_role_id and u.username= ?"
-          		/>
-
+                    authorities-by-username-query="select u.username, ur.role_name from users u, role ur where ur.role_id = u.fk_role_id and u.username= ?"/>
         </security:authentication-provider>
     </security:authentication-manager>
 

@@ -29,7 +29,7 @@ public class User implements Serializable {
     @Id
     @Column(name = "user_id")
     @GeneratedValue
-    private int userId;
+    private Long userId;
 
     @Column(unique = true, name = "username")
     private String username;
@@ -53,11 +53,11 @@ public class User implements Serializable {
     @JoinColumn(name = "aim_id", nullable = true)
     private Set<Aim> aimSet;
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

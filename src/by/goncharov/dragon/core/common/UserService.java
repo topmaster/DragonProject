@@ -7,7 +7,6 @@ import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,6 +14,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import by.goncharov.dragon.core.dao.ContactDAO;
+import by.goncharov.dragon.core.dao.UserDAO;
+import by.goncharov.dragon.core.entity.Contact;
+import by.goncharov.dragon.core.entity.User;
 
 /**
  * Description of UserService class
@@ -28,8 +32,13 @@ public class UserService {
     private static final Logger LOGGER = Logger.getLogger(UserService.class);
 
     @Autowired
-    @Qualifier("authenticationManager")
     protected AuthenticationManager authenticationManager;
+
+    @Autowired
+    private UserDAO userDAO;
+
+    @Autowired
+    private ContactDAO contactDAO;
 
     public void loginService(String username, String password)
             throws AuthenticationServiceException, AuthenticationException {
@@ -42,6 +51,14 @@ public class UserService {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         context.redirect(context.getRequestContextPath() + "/j_spring_security_logout");
         FacesContext.getCurrentInstance().responseComplete();
+    }
+
+    public void saveNewUser(User user, Contact contact) {
+        Long userId = userDAO.save(user);
+        user = new User();
+        user.setUserId(userId);
+        contact.setUser(user);
+        contactDAO.save(contact);
     }
 
 }

@@ -1,7 +1,5 @@
 package by.goncharov.dragon.core.dao;
 
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.goncharov.dragon.core.entity.GoodsCategory;
@@ -14,24 +12,21 @@ import by.goncharov.dragon.core.entity.GoodsCategory;
  */
 public class GoodsCategoryDAOImpl extends BaseDAO implements GoodsCategoryDAO {
 
+    @Override
     @Transactional(readOnly = false)
-    public int save(GoodsCategory goodsCategory) {
-        return (Integer) getCurrentSession().save(goodsCategory);
+    public void save(GoodsCategory goodsCategory) {
+        super.save(goodsCategory);
     }
 
-    @Transactional(readOnly = false)
-    public void update(GoodsCategory goodsCategory) {
-        getCurrentSession().update(goodsCategory);
-    }
-
+    @Override
     @Transactional(readOnly = false)
     public void delete(GoodsCategory goodsCategory) {
-        getCurrentSession().delete(goodsCategory);
+        super.delete(goodsCategory);
     }
 
+    @Override
     @Transactional(readOnly = true)
-    public GoodsCategory findByGoodsCategoryId(int goodsCategoryId) {
-        Criteria criteria = getCurrentSession().createCriteria(GoodsCategory.class);
-        return (GoodsCategory) criteria.add(Restrictions.eq("goodsCatId", goodsCategoryId)).setMaxResults(1).uniqueResult();
+    public GoodsCategory find(Long goodsCatId) {
+        return (GoodsCategory) super.find(GoodsCategory.class, goodsCatId);
     }
 }

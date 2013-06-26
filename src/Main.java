@@ -4,7 +4,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import by.goncharov.dragon.core.HelloService;
-import by.goncharov.dragon.core.dao.RoleDAO;
 import by.goncharov.dragon.core.entity.Role;
 
 public class Main {
@@ -18,10 +17,6 @@ public class Main {
         String roleName = "horse" + System.currentTimeMillis();
         Role role = new Role();
         role.setRoleName(roleName);
-
-        RoleDAO roleDao = (RoleDAO) context.getBean(RoleDAO.class);
-        int roleId = roleDao.save(role);
-        Role byRoleId = roleDao.findByRoleId(roleId);
 
         // locale
         Locale locale = Locale.US;

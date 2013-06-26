@@ -31,7 +31,7 @@ public class Charges implements Serializable {
     @Id
     @Column(name = "charges_id")
     @GeneratedValue
-    private int chargesId;
+    private Long chargesId;
 
     @Column(name = "charges_article")
     private String chargesArticle;
@@ -52,11 +52,11 @@ public class Charges implements Serializable {
     @JoinColumn(name = "fk_user_id", nullable = false)
     private User user;
 
-    public int getChargesId() {
+    public Long getChargesId() {
         return chargesId;
     }
 
-    public void setChargesId(int chargesId) {
+    public void setChargesId(Long chargesId) {
         this.chargesId = chargesId;
     }
 

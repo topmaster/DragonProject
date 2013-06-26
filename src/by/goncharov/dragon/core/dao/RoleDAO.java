@@ -10,11 +10,9 @@ import by.goncharov.dragon.core.entity.Role;
  */
 public interface RoleDAO {
 
-    int save(Role role);
-
-    void update(Role role);
+    void save(Role role);
 
     void delete(Role role);
 
-    Role findByRoleId(int roleId);
+    Role find(Long roleId);
 }

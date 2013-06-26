@@ -1,7 +1,5 @@
 package by.goncharov.dragon.core.dao;
 
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.goncharov.dragon.core.entity.Charges;
@@ -14,24 +12,21 @@ import by.goncharov.dragon.core.entity.Charges;
  */
 public class ChargesDAOImpl extends BaseDAO implements ChargesDAO {
 
+    @Override
     @Transactional(readOnly = false)
-    public int save(Charges charges) {
-        return (Integer) getCurrentSession().save(charges);
+    public void save(Charges charges) {
+        super.save(charges);
     }
 
-    @Transactional(readOnly = false)
-    public void update(Charges charges) {
-        getCurrentSession().update(charges);
-    }
-
+    @Override
     @Transactional(readOnly = false)
     public void delete(Charges charges) {
-        getCurrentSession().delete(charges);
+        super.delete(charges);
     }
 
+    @Override
     @Transactional(readOnly = true)
-    public Charges findByChargesId(int chargesId) {
-        Criteria criteria = getCurrentSession().createCriteria(Charges.class);
-        return (Charges) criteria.add(Restrictions.eq("chargesId", chargesId)).setMaxResults(1).uniqueResult();
+    public Charges find(Long chargesId) {
+        return (Charges) super.find(Charges.class, chargesId);
     }
 }

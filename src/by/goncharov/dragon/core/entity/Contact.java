@@ -1,7 +1,6 @@
 package by.goncharov.dragon.core.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +27,7 @@ public class Contact implements Serializable {
     @Id
     @Column(name = "contact_id")
     @GeneratedValue
-    private int cintactId;
+    private Long contactId;
 
     @Column(name = "firstname")
     private String firstname;
@@ -49,24 +48,24 @@ public class Contact implements Serializable {
     private String workPhoneNumber;
 
     @Column(name = "birthdate")
-    private Date birthdate;
+    private String birthdate;
 
-    @Column(name = "comments", length = 1024)
+    @Column(name = "comments", length = 65536)
     private String comments;
 
     @Column(name = "contact_type")
-    private int type;
+    private Long type;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_user_id", nullable = false)
     private User user;
 
-    public int getCintactId() {
-        return cintactId;
+    public Long getContactId() {
+        return contactId;
     }
 
-    public void setCintactId(int cintactId) {
-        this.cintactId = cintactId;
+    public void setContactId(Long contactId) {
+        this.contactId = contactId;
     }
 
     public String getFirstname() {
@@ -117,11 +116,11 @@ public class Contact implements Serializable {
         this.workPhoneNumber = workPhoneNumber;
     }
 
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -133,11 +132,11 @@ public class Contact implements Serializable {
         this.comments = comments;
     }
 
-    public int getType() {
+    public Long getType() {
         return type;
     }
 
-    public void setType(int contactType) {
+    public void setType(Long contactType) {
         this.type = contactType;
     }
 

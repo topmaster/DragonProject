@@ -251,16 +251,23 @@
                                            required="true"
                                            maxlength="255"
                                            requiredMessage="#{msg.registration_page_password_confirm_required}"
-                                           value="#{newUserBean.confirmPassword}"
                                            binding="#{newUserBean.passwordBind}"/>
                         </td>
                     </tr>
                     <tr>
                          <td>
-                            <h:commandLink id="doReg" styleClass="button" type="submit" value="#{msg.registration_page_button_enter}"/>
+                            <h:commandLink id="doReg"
+                                           styleClass="button"
+                                           type="submit"
+                                           value="#{msg.registration_page_button_enter}"
+                                           action="#{newUserBean.addNewUser}"/>
                         </td>
                         <td>
-                            <h:commandLink styleClass="button" type="submit" value="#{msg.registration_page_button_cancel}" immediate="true" action="login.faces"/>
+                            <h:commandLink styleClass="button"
+                                           type="submit"
+                                           value="#{msg.registration_page_button_cancel}"
+                                           immediate="true"
+                                           action="login.faces"/>
                         </td>
                     </tr>
                     <tr style="height: 20px"></tr>

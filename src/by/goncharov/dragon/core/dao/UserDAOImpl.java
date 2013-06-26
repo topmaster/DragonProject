@@ -1,7 +1,5 @@
 package by.goncharov.dragon.core.dao;
 
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.goncharov.dragon.core.entity.User;
@@ -15,24 +13,21 @@ import by.goncharov.dragon.core.entity.User;
  */
 public class UserDAOImpl extends BaseDAO implements UserDAO {
 
+    @Override
     @Transactional(readOnly = false)
-    public int save(User user) {
-        return (Integer) getCurrentSession().save(user);
+    public Long save(User user) {
+        return (Long) super.getCurrentSession().save(user);
     }
 
-    @Transactional(readOnly = false)
-    public void update(User user) {
-        getCurrentSession().update(user);
-    }
-
+    @Override
     @Transactional(readOnly = false)
     public void delete(User user) {
-        getCurrentSession().delete(user);
+        super.delete(user);
     }
 
+    @Override
     @Transactional(readOnly = true)
-    public User findByUserId(int userId) {
-        Criteria criteria = getCurrentSession().createCriteria(User.class);
-        return (User) criteria.add(Restrictions.eq("userId", userId)).setMaxResults(1).uniqueResult();
+    public User find(Long userId) {
+        return (User) super.find(User.class, userId);
     }
 }

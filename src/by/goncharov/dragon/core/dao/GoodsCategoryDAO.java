@@ -10,11 +10,9 @@ import by.goncharov.dragon.core.entity.GoodsCategory;
  */
 public interface GoodsCategoryDAO {
 
-    int save(GoodsCategory goodsCategory);
-
-    void update(GoodsCategory goodsCategory);
+    void save(GoodsCategory goodsCategory);
 
     void delete(GoodsCategory goodsCategory);
 
-    GoodsCategory findByGoodsCategoryId(int goodsCategoryId);
+    GoodsCategory find(Long goodsCatId);
 }

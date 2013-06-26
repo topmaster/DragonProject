@@ -25,7 +25,7 @@ public class AimCategory implements Serializable {
     @Id
     @Column(name = "aim_category_id")
     @GeneratedValue
-    private int aimCategoryId;
+    private Long aimCategoryId;
 
     @Column(name = "important")
     private Boolean important;
@@ -40,11 +40,11 @@ public class AimCategory implements Serializable {
     @JoinColumn(name = "aim_id", nullable = true)
     private Set<Aim> aimSet;
 
-    public int getAimCategoryId() {
+    public Long getAimCategoryId() {
         return aimCategoryId;
     }
 
-    public void setAimCategoryId(int aimCategoryId) {
+    public void setAimCategoryId(Long aimCategoryId) {
         this.aimCategoryId = aimCategoryId;
     }
 

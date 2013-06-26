@@ -10,11 +10,9 @@ import by.goncharov.dragon.core.entity.User;
  */
 public interface UserDAO {
 
-    int save(User user);
-
-    void update(User user);
+    Long save(User user);
 
     void delete(User user);
 
-    User findByUserId(int userId);
+    User find(Long userId);
 }
