@@ -54,9 +54,7 @@ public class UserService {
     }
 
     public void saveNewUser(User user, Contact contact) {
-        Long userId = userDAO.save(user);
-        user = new User();
-        user.setUserId(userId);
+        userDAO.save(user);
         contact.setUser(user);
         contactDAO.save(contact);
     }

@@ -21,10 +21,6 @@ public abstract class BaseDAO implements Serializable {
     protected BaseDAO() {
     }
 
-    public Session getCurrentSession() {
-        return sessionFactory.getCurrentSession();
-    }
-
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -34,15 +30,15 @@ public abstract class BaseDAO implements Serializable {
     }
 
     protected void save(Object obj) {
-        getCurrentSession().saveOrUpdate(obj);
+        sessionFactory.getCurrentSession().saveOrUpdate(obj);
     }
 
     public Object merge(Object entity) {
-        return getCurrentSession().merge(entity);
+        return sessionFactory.getCurrentSession().merge(entity);
     }
 
     protected void delete(Object obj) {
-        getCurrentSession().delete(obj);
+        sessionFactory.getCurrentSession().delete(obj);
     }
 
     protected Object find(Class<?> clazz, Long id) {
@@ -50,7 +46,7 @@ public abstract class BaseDAO implements Serializable {
     }
 
     public void saveAll(List<?> entities) {
-        Session session = getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
         for (final Object entity : entities) {
             session.saveOrUpdate(entity);
         }

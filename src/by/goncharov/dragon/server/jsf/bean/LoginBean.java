@@ -63,8 +63,7 @@ public class LoginBean {
                     FacesMessage.SEVERITY_ERROR);
             return null;
         } catch (AuthenticationException e) {
-            LOGGER.error(
-                    WebUtils.getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, "login_page_authentication_error",
+            LOGGER.error(WebUtils.getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, "login_page_authentication_error",
                             this.username, this.password, e.getMessage()));
             WebUtils.sendFacesMessage(LOGIN_FORM_DO_LOGIN, "login_page_authentication_error_ui", null,
                     FacesMessage.SEVERITY_ERROR);

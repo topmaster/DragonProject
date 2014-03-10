@@ -32,7 +32,7 @@ public enum ContactType {
         }
     }
 
-     ContactType(int type, String key) {
+     ContactType(Integer type, String key) {
          this.type = type;
          this.key = key;
      }
@@ -53,7 +53,7 @@ public enum ContactType {
         this.labelKey = labelKey;
     }
 
-    public static ContactType getEnum(Long type) {
+    public static ContactType getEnum(Integer type) {
         return MAP.get(type);
     }
 }

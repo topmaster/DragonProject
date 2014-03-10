@@ -135,6 +135,20 @@ public class NewUserBean {
         this.passwordBind = passwordBind;
     }
 
+    public String addNewUser() {
+        try {
+            FacadeUtils.getUserService().saveNewUser(prepareNewUserEntity(), prepareNewUserInfo());
+            return NavigationConstants.REGISTRATION_SUCCESS;
+        } catch (ConstraintViolationException cvEx) {
+            LOGGER.error(WebUtils.getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, "registration_page_login_constrain_invalid"));
+            WebUtils.sendFacesMessage(REG_FORM_LOGIN_ID, "registration_page_login_constrain_invalid", null, FacesMessage.SEVERITY_ERROR);
+            return null;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
     public void validatePassword(FacesContext facesContext, UIComponent uIComponent, Object value)
             throws ValidatorException {
         String password = value.toString();
@@ -155,26 +169,12 @@ public class NewUserBean {
             validateConfirmPassword(value);
         }
     }
-
     private void validateConfirmPassword(Object password) throws ValidatorException {
         if (!password.equals(passwordBind.getSubmittedValue())) {
             LOGGER.error( WebUtils.getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, PASSWORD_INVALID_CONFIRM_PROP_KEY));
             WebUtils.sendFacesMessage(REG_FORM_PASSWORD_ID, PASSWORD_INVALID_CONFIRM_PROP_KEY, null, FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(new FacesMessage(WebUtils
                     .getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, PASSWORD_INVALID_CONFIRM_PROP_KEY)));
-        }
-    }
-    public String addNewUser() {
-        try {
-            FacadeUtils.getUserService().saveNewUser(prepareNewUserEntity(), prepareNewUserInfo());
-            return NavigationConstants.REGISTRATION_SUCCESS;
-        } catch (ConstraintViolationException cvEx) {
-            LOGGER.error(WebUtils.getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, "registration_page_login_constrain_invalid"));
-            WebUtils.sendFacesMessage(REG_FORM_LOGIN_ID, "registration_page_login_constrain_invalid", null, FacesMessage.SEVERITY_ERROR);
-            return null;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return null;
         }
     }
 

@@ -54,7 +54,7 @@ public class Contact implements Serializable {
     private String comments;
 
     @Column(name = "contact_type")
-    private Long type;
+    private Integer type;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_user_id", nullable = false)
@@ -132,11 +132,11 @@ public class Contact implements Serializable {
         this.comments = comments;
     }
 
-    public Long getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(Long contactType) {
+    public void setType(Integer contactType) {
         this.type = contactType;
     }
 

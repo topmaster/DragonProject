@@ -18,5 +18,5 @@ public interface WebConstants {
 
     public final static String BIRTHDATE_PATTERN = "MMM dd, yyyy";
 
-    public static final Long CONTACT_TYPE_OWNER = new Long(0);
+    public static final Integer CONTACT_TYPE_OWNER = new Integer(0);
 }

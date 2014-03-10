@@ -15,8 +15,8 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 
     @Override
     @Transactional(readOnly = false)
-    public Long save(User user) {
-        return (Long) super.getCurrentSession().save(user);
+    public void save(User user) {
+        super.save(user);
     }
 
     @Override
