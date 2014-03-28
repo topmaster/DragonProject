@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<encoder class="org.apache.log4j.PatternLayout">
+            <pattern>%d %5p | %t | %-55logger{55} | %m %n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="by.goncharov.dragon.core.logger" level="ALL" />
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+	<root level="WARN">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+	<root level="DEBUG">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+	<root level="ERROR">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+	<root level="TRACE">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>
