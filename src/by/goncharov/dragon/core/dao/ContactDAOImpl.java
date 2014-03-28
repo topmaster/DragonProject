@@ -1,5 +1,6 @@
 package by.goncharov.dragon.core.dao;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.goncharov.dragon.core.entity.Contact;
@@ -10,6 +11,7 @@ import by.goncharov.dragon.core.entity.Contact;
  * @author Mikita Hancharou
  * @created 26.06.13 10:47
  */
+@Repository
 public class ContactDAOImpl extends BaseDAO implements ContactDAO {
 
     @Override

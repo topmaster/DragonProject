@@ -1,5 +1,6 @@
 package by.goncharov.dragon.core.dao;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.goncharov.dragon.core.entity.Role;
@@ -10,6 +11,7 @@ import by.goncharov.dragon.core.entity.Role;
  * @author Mikita Hancharou
  * @created 18.05.13 15:48
  */
+@Repository
 @Transactional
 public class RoleDAOImpl extends BaseDAO implements RoleDAO {
 

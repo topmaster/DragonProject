@@ -1,5 +1,6 @@
 package by.goncharov.dragon.core.dao;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.goncharov.dragon.core.entity.User;
@@ -11,6 +12,7 @@ import by.goncharov.dragon.core.entity.User;
  * @author Mikita Hancharou
  * @created 23.05.13 12:51
  */
+@Repository
 public class UserDAOImpl extends BaseDAO implements UserDAO {
 
     @Override

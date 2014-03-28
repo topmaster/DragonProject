@@ -1,5 +1,6 @@
 package by.goncharov.dragon.core.dao;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.goncharov.dragon.core.entity.GoodsCategory;
@@ -10,6 +11,7 @@ import by.goncharov.dragon.core.entity.GoodsCategory;
  * @author Mikita Hancharou
  * @created 24.05.13 10:22
  */
+@Repository
 public class GoodsCategoryDAOImpl extends BaseDAO implements GoodsCategoryDAO {
 
     @Override
