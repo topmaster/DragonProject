@@ -26,6 +26,4 @@
         </security:authentication-provider>
     </security:authentication-manager>
 
-    <bean id="loggerListner" class="org.springframework.security.authentication.event.LoggerListener"/>
-
 </beans>

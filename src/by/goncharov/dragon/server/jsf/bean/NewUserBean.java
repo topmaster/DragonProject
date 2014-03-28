@@ -13,7 +13,6 @@ import javax.faces.component.html.HtmlInputSecret;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
-import org.apache.log4j.Logger;
 import org.hibernate.exception.ConstraintViolationException;
 
 import by.goncharov.dragon.core.entity.Contact;
@@ -33,8 +32,6 @@ import by.goncharov.dragon.server.utils.WebUtils;
 @ManagedBean(name = "newUserBean")
 @RequestScoped
 public class NewUserBean {
-
-    private static final Logger LOGGER = Logger.getLogger(LoginBean.class);
 
     private static final String PASSWORD_INVALID_LENGTH_PROP_KEY = "registration_page_password_invalid_length";
     private static final String PASSWORD_INVALID_PATTERN_PROP_KEY = "registration_page_password_invalid_pattern";
@@ -140,7 +137,6 @@ public class NewUserBean {
             FacadeUtils.getUserService().saveNewUser(prepareNewUserEntity(), prepareNewUserInfo());
             return NavigationConstants.REGISTRATION_SUCCESS;
         } catch (ConstraintViolationException cvEx) {
-            LOGGER.error(WebUtils.getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, "registration_page_login_constrain_invalid"));
             WebUtils.sendFacesMessage(REG_FORM_LOGIN_ID, "registration_page_login_constrain_invalid", null, FacesMessage.SEVERITY_ERROR);
             return null;
         } catch (Exception ex) {
@@ -153,17 +149,13 @@ public class NewUserBean {
             throws ValidatorException {
         String password = value.toString();
         if (password.length() < 5) {
-            LOGGER.error(WebUtils.getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, PASSWORD_INVALID_LENGTH_PROP_KEY));
             WebUtils.sendFacesMessage(REG_FORM_PASSWORD_ID, PASSWORD_INVALID_LENGTH_PROP_KEY, null, FacesMessage.SEVERITY_ERROR);
-            throw new ValidatorException(new FacesMessage(WebUtils
-                    .getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, PASSWORD_INVALID_LENGTH_PROP_KEY)));
+            throw new ValidatorException(new FacesMessage(WebUtils.getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, PASSWORD_INVALID_LENGTH_PROP_KEY)));
         }
         boolean matches = Pattern.matches(PASSWORD_PATTERN, password);
         if (!matches) {
-            LOGGER.error(WebUtils.getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, PASSWORD_INVALID_PATTERN_PROP_KEY));
             WebUtils.sendFacesMessage(REG_FORM_PASSWORD_ID, PASSWORD_INVALID_PATTERN_PROP_KEY, null, FacesMessage.SEVERITY_ERROR);
-            throw new ValidatorException(new FacesMessage(WebUtils
-                    .getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, PASSWORD_INVALID_PATTERN_PROP_KEY)));
+            throw new ValidatorException(new FacesMessage(WebUtils.getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, PASSWORD_INVALID_PATTERN_PROP_KEY)));
         }
         if (!WebUtils.isStringEmpty(passwordBind.getSubmittedValue().toString())) {
             validateConfirmPassword(value);
@@ -171,10 +163,8 @@ public class NewUserBean {
     }
     private void validateConfirmPassword(Object password) throws ValidatorException {
         if (!password.equals(passwordBind.getSubmittedValue())) {
-            LOGGER.error( WebUtils.getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, PASSWORD_INVALID_CONFIRM_PROP_KEY));
             WebUtils.sendFacesMessage(REG_FORM_PASSWORD_ID, PASSWORD_INVALID_CONFIRM_PROP_KEY, null, FacesMessage.SEVERITY_ERROR);
-            throw new ValidatorException(new FacesMessage(WebUtils
-                    .getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, PASSWORD_INVALID_CONFIRM_PROP_KEY)));
+            throw new ValidatorException(new FacesMessage(WebUtils.getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, PASSWORD_INVALID_CONFIRM_PROP_KEY)));
         }
     }
 

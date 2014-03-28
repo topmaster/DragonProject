@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
@@ -28,8 +27,6 @@ import by.goncharov.dragon.core.entity.User;
  */
 @Service
 public class UserService {
-
-    private static final Logger LOGGER = Logger.getLogger(UserService.class);
 
     @Autowired
     protected AuthenticationManager authenticationManager;

@@ -19,13 +19,6 @@
         </property>
     </bean>
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${jdbc.driverClassName}"/>
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.username}"/>
-        <property name="password" value="${jdbc.password}"/>
-    </bean>
-
     <bean id="baseDAO" class="by.goncharov.dragon.core.dao.BaseDAO" abstract="true" >
         <property name="sessionFactory" ref="hibernateSessionFactory" />
     </bean>
@@ -48,6 +41,13 @@
 
     <bean id="contactDao" class="by.goncharov.dragon.core.dao.ContactDAOImpl" parent="baseDAO">
         <property name="sessionFactory" ref="hibernateSessionFactory"/>
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
     </bean>
 
     <bean id="hibernateSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">

@@ -11,14 +11,10 @@ import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
-
 import by.goncharov.dragon.server.utils.WebConstants;
 import by.goncharov.dragon.server.utils.WebUtils;
 
 public class SessionPhaseListener implements PhaseListener {
-
-    private Logger logger = Logger.getLogger(SessionPhaseListener.class);
 
     private static final String SESSION_DENIED_PAGE = "/jsp/login.faces";
 
@@ -48,9 +44,7 @@ public class SessionPhaseListener implements PhaseListener {
                 viewHandler.renderView(facesContext, view);
                 facesContext.responseComplete();
             } catch (Throwable t) {
-                logger.error(WebUtils.getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, "session_denied_error"));
-                throw new FacesException(
-                        WebUtils.getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, "session_denied_error"), t);
+                throw new FacesException(WebUtils.getFormattedProperty(WebConstants.RESOURCE_BUNDLE_UI, "session_denied_error"), t);
             }
         }
     }
