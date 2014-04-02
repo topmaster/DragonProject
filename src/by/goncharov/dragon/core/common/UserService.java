@@ -7,7 +7,6 @@ import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -37,8 +36,7 @@ public class UserService {
     @Autowired
     private ContactDAO contactDAO;
 
-    public void loginService(String username, String password)
-            throws AuthenticationServiceException, AuthenticationException {
+    public void loginService(String username, String password) throws AuthenticationException {
         Authentication request = new UsernamePasswordAuthenticationToken(username, password);
         Authentication result = authenticationManager.authenticate(request);
         SecurityContextHolder.getContext().setAuthentication(result);
