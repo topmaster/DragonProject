@@ -17,8 +17,8 @@
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath:dbconfig/jdbc.properties</value>
-                <value>classpath:dbconfig/hibernate.properties</value>
+                <value>classpath:resource/dbconfig/jdbc.properties</value>
+                <value>classpath:resource/dbconfig/hibernate.properties</value>
             </list>
         </property>
     </bean>
