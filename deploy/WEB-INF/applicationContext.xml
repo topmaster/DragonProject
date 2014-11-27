@@ -12,7 +12,7 @@
                            http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="by.goncharov.dragon.core, org.springframework.security"/>
+    <context:component-scan base-package="by.goncharov.dragon.core"/>
 
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
