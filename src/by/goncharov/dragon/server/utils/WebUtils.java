@@ -1,12 +1,11 @@
 package by.goncharov.dragon.server.utils;
 
-import java.text.MessageFormat;
-import java.util.Locale;
-import java.util.ResourceBundle;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
+import java.text.MessageFormat;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Description of WebUtils class
@@ -15,6 +14,9 @@ import javax.faces.context.FacesContext;
  * @created 18.06.13 11:55
  */
 public class WebUtils {
+
+    private WebUtils() {
+    }
 
     public static String getFormattedProperty(String propFile, String propName, Object... params) {
         String property = getProperty(propFile, propName);

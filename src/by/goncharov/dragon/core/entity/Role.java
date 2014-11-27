@@ -1,16 +1,8 @@
 package by.goncharov.dragon.core.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 /**
  * Description of Role class
@@ -33,6 +25,9 @@ public class Role implements Serializable {
     @Column(unique = true, name = "role_name")
     private String roleName;
 
+    @Column(name = "contact_type")
+    private Integer type;
+
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = true)
     private Set<User> userSet;
@@ -53,11 +48,23 @@ public class Role implements Serializable {
         this.roleName = roleName;
     }
 
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
     public Set<User> getUserSet() {
         return userSet;
     }
 
     public void setUserSet(Set<User> userSet) {
         this.userSet = userSet;
+    }
+
+    public RoleType getContactType() {
+        return RoleType.getEnum(type);
     }
 }

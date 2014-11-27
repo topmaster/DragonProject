@@ -1,9 +1,13 @@
 package by.goncharov.dragon.server.jsf.bean;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.regex.Pattern;
+import by.goncharov.dragon.core.entity.Contact;
+import by.goncharov.dragon.core.entity.Role;
+import by.goncharov.dragon.core.entity.User;
+import by.goncharov.dragon.server.utils.FacadeUtils;
+import by.goncharov.dragon.server.utils.NavigationConstants;
+import by.goncharov.dragon.server.utils.WebConstants;
+import by.goncharov.dragon.server.utils.WebUtils;
+import org.hibernate.exception.ConstraintViolationException;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -12,16 +16,10 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlInputSecret;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
-
-import org.hibernate.exception.ConstraintViolationException;
-
-import by.goncharov.dragon.core.entity.Contact;
-import by.goncharov.dragon.core.entity.Role;
-import by.goncharov.dragon.core.entity.User;
-import by.goncharov.dragon.server.utils.FacadeUtils;
-import by.goncharov.dragon.server.utils.NavigationConstants;
-import by.goncharov.dragon.server.utils.WebConstants;
-import by.goncharov.dragon.server.utils.WebUtils;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.regex.Pattern;
 
 /**
  * Description of NewUserBean class
@@ -198,7 +196,7 @@ public class NewUserBean {
     private Role prepareUserRole() {
         Role role = new Role();
         role.setRoleName(WebConstants.ROLE_USER);
-        role.setRoleId(WebConstants.ROLE_USER_ID);
+//        role.setRoleId(WebConstants.ROLE_USER_ID);
         return role;
     }
 

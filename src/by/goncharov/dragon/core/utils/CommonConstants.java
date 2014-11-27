@@ -14,4 +14,5 @@ public interface CommonConstants {
     public static final int CONTACT_TYPE_CUSTOMER = 3;
     public static final int CONTACT_TYPE_DISTRIBUTOR = 4;
     public static final int CONTACT_TYPE_DROPPED_OUT = 5;
+    public static final int ADMIN_ROLE_TYPE = 0;
 }
